@@ -32,6 +32,10 @@ public class ProductRepositoryIntegrationTest {
         product.setImage("image3");
         product.setPrice(3.33);
 
+        if (productRepository.findById(1L) != null) {
+            productRepository.deleteById(1L);
+        }
+
         entityManager.persistAndFlush(product);
 
         Product foundProduct = productRepository.findById(1L);
