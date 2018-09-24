@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class ProductRepositoryIntegrationTest {
 
     @Autowired
@@ -31,10 +33,6 @@ public class ProductRepositoryIntegrationTest {
         product.setDescription("description3");
         product.setImage("image3");
         product.setPrice(3.33);
-
-        if (productRepository.findById(1L) != null) {
-            productRepository.deleteById(1L);
-        }
 
         entityManager.persistAndFlush(product);
 
