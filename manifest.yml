@@ -1,0 +1,6 @@
+applications:
+- name: product-services
+  path: ./build/libs/product-services-0.0.1-SNAPSHOT.jar
+  env:
+    JAVA_OPTS: '-Xss256K  -Xmx256m -Dserver.tomcat.max-threads=3 -Dspring.datasource.hikari.maximum-pool-size=2'
+
