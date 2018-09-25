@@ -3,13 +3,13 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'gradle check'
+                sh './gradlew check'
                 junit 'build/test-results/**/*.xml'
             }
         }
         stage('Build'){
             steps{
-                sh 'gradle clean assemble'
+                sh './gradlew clean assemble'
             }
         }
         stage('Deploy'){
